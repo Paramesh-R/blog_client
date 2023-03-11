@@ -1,0 +1,113 @@
+/* CSS for Draft Editor */
+
+@media (max-width: 768px) {
+
+    /* For mobile phones: */
+    .editor-class {
+        margin: 0;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .toolbar-class {
+        margin-left: 0;
+        margin-right: 0;
+        margin: 0;
+    }
+
+    .wrapper-class {
+        margin-left: 0;
+        margin-right: 0;
+        margin: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+}
+
+.wrapper-class {
+    padding: 1rem;
+    border: 1px solid eee;
+    height: 1000px;
+    background: #eee;
+    margin-top: 10px;
+    border-radius: 10px;
+
+}
+
+.editor-class {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 1rem;
+    border: 1px solid eee;
+    background-color: white;
+    height: 90%;
+    overflow-y: auto;
+    border-radius: 10px;
+
+}
+
+
+.toolbar-class {
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.view-wrapper-class {
+    border: 1px solid eee;
+    min-height: auto;/* 1000px; */
+    background: #bbb;
+    margin-top: 10px;
+    border-radius: 10px;
+
+}
+
+.view-editor-class {
+    border: 1px solid #eee;
+    background-color: white;
+    padding: 10px;
+    /* min-height: 1000px; */
+    overflow-y: auto;
+    border-radius: 10px;
+
+}
+
+
+.view-toolbar-class {
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+/* Comments CSS Draft Editor */
+
+.comments-wrapper-class {
+    border: 1px solid #CED4DA;
+    min-height: auto;/* 1000px; */
+    background: #fffffF;
+    margin-top: 10px;
+    border-radius: 10px;
+
+}
+
+.comments-editor-class {
+    border: 1px solid #eee;
+    background-color: white;
+    padding: 10px;
+    /* min-height: 1000px; */
+    overflow-y: auto;
+    border-radius: 10px;
+
+}
+
+
+.comments-toolbar-class {
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
