@@ -5,9 +5,9 @@ function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  
   async function register(ev) {
     ev.preventDefault();
-    console.log("clicked Register button")
     const response = await fetch('http://localhost:5000/users/register', {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -25,6 +25,8 @@ function RegisterPage() {
 
   // If Registration Successful Redirect to index
   if (redirect) return <Navigate to={'/login'} />
+
+
   return (
     <>
       <div className="container">
@@ -59,49 +61,3 @@ function RegisterPage() {
 }
 
 export default RegisterPage
-
-
-//<=========================================================================================> 
-//<=============================== LEGACY CODES ============================================> 
-//<=========================================================================================> 
-
-  // <div className="App">
-    //   <div className="container">
-    //     <h2>Register User</h2><br />
-    //     <div className="row d-flex justify-content-center">
-    //       <div className="col-md-4">
-    //         <form id="registerForm" onSubmit={register}>
-    //           <div className="form-group">            {/* USERNAME */}
-    //             <label>Username</label>
-    //             <input
-    //               type="user"
-    //               className="form-control"
-    //               id="userInput"
-    //               name="userInput"
-    //               aria-describedby="userHelp"
-    //               placeholder="Enter user"
-    //               onChange={(event) => setUsername(event.target.value)}
-    //             />
-
-    //           </div>
-
-    //           <div className="form-group">            {/* PASSWORD */}
-    //             <label>Password</label>
-    //             <input
-    //               type="password"
-    //               className="form-control"
-    //               id="exampleInputPassword1"
-    //               placeholder="Password"
-    //               onChange={(event) => setPassword(event.target.value)}
-    //             />
-
-    //           </div>
-
-    //           <br />
-    //           <button type="submit" className="btn btn-primary">Register</button>
-    //         </form>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    //<=========================================================================================> 

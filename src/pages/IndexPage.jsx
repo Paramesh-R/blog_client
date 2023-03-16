@@ -1,87 +1,43 @@
 import React, { useState, useEffect } from 'react'
-//For Card
 import CardPost from '../component/CardPost'
-// For Pagination
-import SelectLimit from "../component/SelectLimit"
 import PaginationComp from '../component/PaginationComp'
-// API
-import { getPosts, getTotalPostsLength } from '../api/posts'
-// import BlogPostCard from '../component/BlogPostCard'
+// import { UserContext } from '../UserContext'
 
 
 
-function IndexPage() {
-  // Post
+function IndexPage(props) {
   const [posts, setPosts] = useState([])
-  // Pagination
-  // const [page, setPage] = useState(1);
-  // const [pageLimit, setPageLimit] = useState(10);
-  // let currPage = 1;
-
-  // let totalPages = Math.ceil(getTotalPostsLength() / pageLimit) || 1 // Find Total No of Pages Needed
-  // console.log("totalPages:", totalPages)
-  // if (page <= totalPages) { currPage = page; }                  // Set Current Page for pagination according to Pagelimit
-  // else { setPage(totalPages); currPage = page; }
-
-
-  
-
-  // useEffect(() => {
-  //   // fetch('http://localhost:5000/posts').then(response => { response.json().then(posts => { setPosts(posts); setFilteredPost(getPosts(currPage, pageLimit)); console.log(posts.length) }) })
-  // }, [page, pageLimit]);
-
-
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
 
   useEffect(() => {
-
-
-    // console.log(pageLimit);
-    // const x = getTotalPostsLength();
-    // console.log("Get total posts: ", x);
-
-    // totalPages = Math.ceil(getTotalPostsLength() / pageLimit) || 10 //
-    // console.log("UseEffect Total Pages: ", totalPages)
-    // getPosts(currPage, pageLimit).then(data => setPosts(data))
-    // getPosts(currPage, pageLimit).then(data => setPosts(data))
-    fetch('http://localhost:5000/posts/')
+    fetch(`http://localhost:5000/posts?page=${page}`)
       .then(response => {
         response.json()
-          .then(result => setPosts(result))
+          // .then(result => setPosts(result))      ---> Before Pagination
+          .then(data => {
+            setPosts(data.items);
+            setTotalPages(data.pageCount);
+          })
           .catch(err => console.log(err))
       })
-      .catch(err => "Error Fetching all post: " + err)
-
-    // totalPages = Math.ceil(posts.length / pageLimit);
-    // console.log("Math ceil", Math.ceil(posts.length / pageLimit));
-    // console.log("UseEffect Total Pages: ", totalPages)
-    // if (page <= totalPages) { currPage = page; }                  // Set Current Page for pagination according to Pagelimit
-    // else { setPage(totalPages); currPage = page; }
-    // console.log("totalPages: ", totalPages)
-
-    // console.log("currPage: ", currPage)
-
-    // console.log("pageLimit: ", pageLimit)
-  }, [])
+      .catch(err => console.log("Error Fetching all post: " + err))
+  }, [page])
 
 
-  
+
   // PAGINATION Function
-  /* function handlePageChange(value) {
+  function handlePageChange(value) {
     if (value === "&laquo;" || value === "... ") { setPage(1) }
     else if (value === "&lsaquo;") { if (page !== 1) { setPage(page - 1) } }
     else if (value === "&rsaquo;") { if (page !== totalPages) { setPage(page + 1) } }
     else if (value === "&raquo;" || value === " ...") { setPage(totalPages) }
     else { setPage(value) }
-
-    //   // console.log("clicked Page in Pagination"+ value)
-
-  } */
+  }
   // --------------------------
 
-
   return (
-
     <div className="container">                           {/* <!-- Page Content --> */}
       {/* <button onClick={refreshContent}>Refresh</button> */}
       <header className="py-5 bg-light border-bottom mb-4">   {/* <!-- Page header with logo and tagline--> */}
@@ -97,33 +53,68 @@ function IndexPage() {
       <div className="container">                         {/* 06-03-2023 Index Blog Post */}
         <div className="row">
           {/* POSTS old design */}
-
+          {/* <div className="col-lg-8"> */}
+          {/* Contents */}
           <div className="row">
 
             {posts.length > 0 && posts.map((post, index) => (<CardPost key={index} {...post} />))}
             {posts.length === 0 && <h2 className="text-center">No Result Found</h2>}
           </div>
-
           {/* Select Limit + Pagination */}
-
-
           <div className='pagination-container'>
-
             {/* <SelectLimit onLimitChange={setPageLimit} /> */}
-
-            {/*  <PaginationComp
+            <PaginationComp
               totalPage={totalPages}
-              page={currPage}
-              limit={pageLimit}
+              page={page}
+              limit={5}
               sibling={1}
               onPageChange={handlePageChange}
             />
- */}
-          </div>
-          {/*              
-            
-           */}
 
+          </div>
+
+          {/* </div> */}
+
+          {/* Column - Search */}                      {/* Column - Search and Tags */}{/* <!-- Search widget--> */}
+          {/* <div className="col-lg-2">
+            <div className="card mb-4">                         
+              <div className="card-header">Search</div>
+              <div className="card-body">
+                <div className="input-group">
+                  <input className="form-control" type="text" placeholder="Enter search term..." value={search} onChange={ev => setSearch(ev.target.value)} aria-label="Enter search term..." aria-describedby="button-search" />
+                   */}{/* <button className="btn btn-primary" id="button-search" type="button" onClick={searchPosts}>Go!</button> */}
+          {/*  </div>
+              </div>
+            </div>
+          </div> */}
+          {/* <!-- Categories widget--> */}
+          {/*  <div className="card mb-4">                         
+              <div className="card-header">Categories</div>
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-sm-6">
+                    <ul className="list-unstyled mb-0">
+                      <li><a href="#!">Web Design</a></li>
+                      <li><a href="#!">HTML</a></li>
+                      <li><a href="#!">Freebies</a></li>
+                    </ul>
+                  </div>
+                  <div className="col-sm-6">
+                    <ul className="list-unstyled mb-0">
+                      <li><a href="#!">JavaScript</a></li>
+                      <li><a href="#!">CSS</a></li>
+                      <li><a href="#!">Tutorials</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+
+
+          {/*  <div className="card mb-4">                       <!-- Side widget Template--> 
+                       {/*  <div className="card-header">Side Widget</div>
+                        <div className="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                    </div> */}
 
         </div>
       </div>

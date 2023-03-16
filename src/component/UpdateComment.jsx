@@ -5,7 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 import DraftEditor from './DraftEditor';
 
 function UpdateComment(props) {
-    console.log("Update Comment Snippet", props.comm.comment)
     const [show, setShow] = useState(false);
     let contentState = ContentState.createFromText(props.comm.comment ? props.comm.comment : "");
     const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState));
@@ -35,7 +34,7 @@ function UpdateComment(props) {
                     body: JSON.stringify({
                         "blog_id": blog_id,
                         "comment_id": comment_id,
-                        "value":value
+                        "value": value
 
                     })
                 }).catch(err => console.log('Error creating Comment: ', err));
@@ -64,7 +63,7 @@ function UpdateComment(props) {
                 <Modal.Body>
                     <form >
                         <input
-                            className='form-control w-25 mb-3'
+                            className='form-control mb-3'
                             type="text"
                             disabled={false} //{username ? true : false}
                             placeholder="Name"
@@ -74,7 +73,6 @@ function UpdateComment(props) {
                             maxLength="20"
                         />
                         <div className="form-floating mb-5">
-                            {/* <textarea className="form-control" id="message" type="text" placeholder="Message" style={{ "height": "20rem" }} data-sb-validations="required"></textarea> */}
                             <DraftEditor
                                 editorState={editorState}
                                 setEditorState={setEditorState}

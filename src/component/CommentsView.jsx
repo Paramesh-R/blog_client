@@ -24,7 +24,6 @@ function CommentsView(props) {
             console.log("Response not okay while Deleting Post");
         }
         window.location.reload(true);
-        // <Navigate to={'/mypost'} />
     }
     return (
         <>

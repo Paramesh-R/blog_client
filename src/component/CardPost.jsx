@@ -10,7 +10,7 @@ function CardPost(props) {
 
                     <img src="https://via.placeholder.com/700x400" alt="" className="card-img-top" />
                     {/* <img src="https://loremflickr.com/700/400/nature" alt="" className="card-img-top" /> */}
-                    
+
                 </Link>
                 <div className="card-body">
                     {/* <h4 className="card-title mb-3"><a href="javascript(void)" > {props.title}</a></h4> */}
@@ -30,6 +30,7 @@ function CardPost(props) {
                     <div className="d-flex flex-row bd-highlight mb-3 small">
                         <div className="p-2 bd-highlight"><i className="bi bi-person"></i> {props.author}</div>
                         <div className="p-2 bd-highlight"><i className="bi bi-clock"></i> {formatISO9075(new Date(props.createdAt), { representation: 'date' })}</div>
+                        {/* <div className="p-2 bd-highlight"><i className="bi bi-clock"></i> {new Date(props.createdAt).toDateString()}</div> */}
                         <div className="p-2 bd-highlight"><i className="bi bi-chat-dots"></i> {props.comments.length}</div>
                         <div className="p-2 bd-highlight"><i className="bi bi-eye"></i> {props.viewCount}</div>
                     </div>

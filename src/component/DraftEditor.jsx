@@ -1,9 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import { convertFromRaw, convertToRaw, EditorState, Modifier } from 'draft-js'
-import draftToHtml from 'draftjs-to-html'
-
+import { EditorState, Modifier } from 'draft-js'
 import "../component/DraftEditor.css"
 
 
@@ -128,19 +126,7 @@ function DraftEditor(props) {
 
     // ------------------------------------------------- END: Max Characters
 
-    /* function getMentions() {
-        console.log("Get Mentions:")
-        const rawEditorContent = convertToRaw(editorState.getCurrentContent());
-        const entityMap = rawEditorContent.entityMap;
-        Object.values(entityMap).map(entity => {
-            console.log(entity.data.mention);
-        });
-    }
 
-    function getHashtags(){
-        const rawEditorContent = convertToRaw(editorState.getCurrentContent());
-        console.log(rawEditorContent)
-    } */
     return (
         <>
             <div className="cn mb-2">
@@ -190,6 +176,7 @@ function DraftEditor(props) {
                 {/* </div> */}
                 {/* ----------------------------------------------------------------------------- */}
             </div>
+            <hr />
             <div style={{ position: "absolute", right: 50 }}>{/* Characters Count for Maximum count */}
                 {currentCount}/{MAX_LENGTH} characters
             </div>

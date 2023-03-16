@@ -1,7 +1,6 @@
 import { convertToRaw, EditorState } from 'draft-js'
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import React, { useContext, useEffect, useState, } from 'react'
 import { useParams } from 'react-router-dom'
-import ViewPostPage from '../pages/ViewPostPage'
 import { UserContext } from '../UserContext'
 import CommentsView from './CommentsView'
 import DraftEditor from './DraftEditor'
@@ -77,7 +76,7 @@ function CommentComp(props) {
 
                 <form onSubmit={addComments}>
                   <input
-                    className='form-control w-25 mb-3'
+                    className='form-control mb-3'
                     type="text"
                     disabled={username ? true : false}
                     placeholder="Name"
@@ -86,6 +85,7 @@ function CommentComp(props) {
                     required
                     maxLength="20"
                   />
+                  
 
                   {/* <!-- Name Input --> */}
                   {/* <div className="form-floating mb-1">

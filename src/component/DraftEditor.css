@@ -4,24 +4,25 @@
 
     /* For mobile phones: */
     .editor-class {
-        margin: 0;
+        /* border: 1px solid red; */
+        /* margin: 0;
         margin-left: 0;
-        margin-right: 0;
-        width: 100%;
+        margin-right: 0;*/
+        max-height: 80%; 
     }
 
     .toolbar-class {
-        margin-left: 0;
+        /* margin-left: 0;
         margin-right: 0;
-        margin: 0;
+        margin: 0; */
     }
 
     .wrapper-class {
-        margin-left: 0;
+        /* margin-left: 0;
         margin-right: 0;
         margin: 0;
         width: 100%;
-        padding: 0;
+        padding: 0; */
     }
 
 }
@@ -66,7 +67,7 @@
 }
 
 .view-editor-class {
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
     background-color: white;
     padding: 10px;
     /* min-height: 1000px; */

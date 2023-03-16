@@ -9,9 +9,8 @@ import EditPost from "./pages/EditPost";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ViewPostPage from "./pages/ViewPostPage";
-import MyPostPage from './pages/MyPostPage'
+import Dashboard from './pages/Dashboard'
 import { UserContextProvider } from './UserContext';
-import TestPage from './pages/TestPage';
 
 
 
@@ -23,11 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />} >
             <Route index element={<IndexPage />} />
-            <Route path={"/test"} element={<TestPage />} />
             <Route path={"/create"} element={<CreatePost />} />
             <Route path={"/view/:id"} element={<ViewPostPage />} />
             <Route path={"/edit/:id"} element={<EditPost />} />
-            <Route path={"/mypost"} element={<MyPostPage />} />
+            <Route path={"/dashboard"} element={<Dashboard />} />
             <Route path={"/login"} element={<LoginPage />} />
             <Route path={"/register"} element={<RegisterPage />} />
           </Route>

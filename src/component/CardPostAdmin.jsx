@@ -21,7 +21,7 @@ function CardPostAdmin(props) {
             console.log("Response not okay while Deleting Post");
         }
         window.location.reload(true);
-        <Navigate to={'/mypost'} />
+        <Navigate to={'/dashboard'} />
 
 
     }
@@ -44,10 +44,10 @@ function CardPostAdmin(props) {
                     <p className="card-text ">{props.content}</p>
  */}
                     {/* <div className="small text-muted">Published on {formatISO9075(new Date(props.createdAt), { representation: 'date' })} by {props.author}</div> */}
-                    <div class="d-flex flex-row bd-highlight mb-3 small">
-                        <div class="p-2 bd-highlight"><i class="bi bi-person"></i> {props.author}</div>
-                        <div class="p-2 bd-highlight"><i class="bi bi-clock"></i> {formatISO9075(new Date(props.createdAt), { representation: 'date' })}</div>
-                        <div class="p-2 bd-highlight"><i class="bi bi-chat-dots"></i> {props.comments.length}</div>
+                    <div className="d-flex flex-row bd-highlight mb-3 small">
+                        <div className="p-2 bd-highlight"><i className="bi bi-person"></i> {props.author}</div>
+                        <div className="p-2 bd-highlight"><i className="bi bi-clock"></i> {formatISO9075(new Date(props.createdAt), { representation: 'date' })}</div>
+                        <div className="p-2 bd-highlight"><i className="bi bi-chat-dots"></i> {props.comments.length}</div>
                         <div className="p-2 bd-highlight"><i className="bi bi-eye"></i> {props.viewCount}</div>
                     </div>
 
