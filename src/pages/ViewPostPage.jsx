@@ -1,4 +1,4 @@
-import { formatRFC7231 } from 'date-fns'
+// import { formatRFC7231 } from 'date-fns'
 import { convertFromRaw, EditorState } from 'draft-js'
 import React, { useState, useEffect } from 'react'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
@@ -24,15 +24,16 @@ function ViewPostPage(props) {
   })
 
 
-  async function getData() {
-    const response = await fetch(`http://localhost:5000/posts/${id}`);
-    const postData = await response.json()
-    return postData;
-  }
+
 
 
   useEffect(() => {
-    console.log("view POST - UseEffect: " + id)
+    // console.log("view POST - UseEffect: " + id)
+    async function getData() {
+      const response = await fetch(`https://draftjs-blog-server.onrender.com/posts/${id}`);
+      const postData = await response.json()
+      return postData;
+    }
 
     getData().then(postData => {
       setPostInfo(postData)
@@ -45,7 +46,7 @@ function ViewPostPage(props) {
       }
     }
     )
-  }, [])
+  }, [id])
 
 
 
@@ -88,7 +89,7 @@ function ViewPostPage(props) {
                     />
 
                     {/* <div className="p-2 bd-highlight">last modified:  {formatRFC7231(new Date(postInfo.lastmodifiedAt))}</div> */}
-                   {/*  <p className="p-2 bd-highlight text-right">Last modified:  {new Date(postInfo.lastmodifiedAt).toDateString()} - {new Date(postInfo.lastmodifiedAt).toLocaleTimeString()}</p> */}
+                    {/*  <p className="p-2 bd-highlight text-right">Last modified:  {new Date(postInfo.lastmodifiedAt).toDateString()} - {new Date(postInfo.lastmodifiedAt).toLocaleTimeString()}</p> */}
                     <div className="d-flex flex-row-reverse bd-highlight">
                       <div className="p-2 mt-3 bd-highlight small">Last modified:  {new Date(postInfo.lastmodifiedAt).toDateString()} - {new Date(postInfo.lastmodifiedAt).toLocaleTimeString()}</div>
 

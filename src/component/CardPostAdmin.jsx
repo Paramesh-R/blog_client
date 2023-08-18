@@ -7,7 +7,7 @@ function CardPostAdmin(props) {
 
     const deletePost = async (_id) => {
         console.log('Delete button clicked' + _id)
-        const response = await fetch(`http://localhost:5000/posts/${_id}`,
+        const response = await fetch(`https://draftjs-blog-server.onrender.com/posts/${_id}`,
             {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" }

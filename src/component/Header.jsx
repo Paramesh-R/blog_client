@@ -13,7 +13,7 @@ function Header() {
     const { userInfo } = useContext(UserContext)
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/profile', { credentials: 'include', }).then(response => {
+        fetch('https://draftjs-blog-server.onrender.com/users/profile', { credentials: 'include', }).then(response => {
             if (response.status === 200) {
                 response.json().then(userDetails => { setUserInfo(userDetails) }).catch(err => console.log("Header UseEffect userDetailsJSON Error" + err))
             } else { console.log("token Expired") }
@@ -21,7 +21,7 @@ function Header() {
     }, [setUserInfo])
 
     function logout() {
-        fetch('http://localhost:5000/users/logout', { credentials: "include", method: "POST" })
+        fetch('https://draftjs-blog-server.onrender.com/users/logout', { credentials: "include", method: "POST" })
         setUserInfo(null)
         return <Navigate to="/" />
     }

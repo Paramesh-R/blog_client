@@ -19,7 +19,7 @@ function Dashboard() {
     console.log("My Post UseEffect", username);
 
 
-    fetch(`http://localhost:5000/posts?page=${page}&author=${username || ""}`)
+    fetch(`https://draftjs-blog-server.onrender.com/posts?page=${page}&author=${username || ""}`)
       .then(response => {
         response.json()
           // .then(result => setPosts(result))      ---> Before Pagination

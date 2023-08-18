@@ -39,7 +39,7 @@ function CommentComp(props) {
       const value = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
       console.log(reader, value, id);
 
-      const response = await fetch(`http://localhost:5000/posts/${id}/comment`,
+      const response = await fetch(`https://draftjs-blog-server.onrender.com/posts/${id}/comment`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

@@ -7,7 +7,7 @@ function CommentsView(props) {
     const { id } = useParams();
     const deleteComment = async (blog_id, comment_id) => {
         console.log(blog_id, comment_id)
-        const response = await fetch(`http://localhost:5000/comment/${comment_id}`,
+        const response = await fetch(`https://draftjs-blog-server.onrender.com/comment/${comment_id}`,
             {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },

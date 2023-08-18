@@ -12,7 +12,7 @@ function IndexPage(props) {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/posts?page=${page}`)
+    fetch(`https://draftjs-blog-server.onrender.com/posts?page=${page}`)
       .then(response => {
         response.json()
           // .then(result => setPosts(result))      ---> Before Pagination

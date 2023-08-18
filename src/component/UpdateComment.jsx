@@ -16,7 +16,7 @@ function UpdateComment(props) {
     const handleShow = () => setShow(true);
 
 
-    useEffect(() => { setEditorState(EditorState.createWithContent(contentState)); }, [])
+    useEffect(() => { setEditorState(EditorState.createWithContent(contentState)); }, [contentState])
 
     const updateComment = async (ev) => {
         ev.preventDefault();
@@ -27,7 +27,7 @@ function UpdateComment(props) {
             const blog_id = props.id;
             const comment_id = props.comm._id;
             // const reader = props.comm.postedBy;
-            const response = await fetch(`http://localhost:5000/comment/${blog_id}`,
+            const response = await fetch(`https://draftjs-blog-server.onrender.com/comment/${blog_id}`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },

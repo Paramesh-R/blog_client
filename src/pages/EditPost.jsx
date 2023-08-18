@@ -21,33 +21,35 @@ function EditPost(props) {
   const [redirect, setRedirect] = useState(false);
 
   const { id } = useParams();
-  const [postInfo, setPostInfo] = useState({
-    "title": "",
-    "content": "",
-    "tags": [],
-    "mentions": [],
-    "author": "",
-    "summary": "...",
-    "createdAt": Date.now()
-    // "coverimage":""
-  })
+  // const [postInfo, setPostInfo] = useState({
+  //   "title": "",
+  //   "content": "",
+  //   "tags": [],
+  //   "mentions": [],
+  //   "author": "",
+  //   "summary": "...",
+  //   "createdAt": Date.now()
+  //   // "coverimage":""
+  // })
 
 
 
 
-  async function getData() {
-    const response = await fetch(`http://localhost:5000/posts/${id}`);
-    const postData = await response.json()
 
-    return postData;
-  }
 
 
   useEffect(() => {
     console.log("EDIT POST - UseEffect: " + id)
 
+    async function getData() {
+      const response = await fetch(`https://draftjs-blog-server.onrender.com/posts/${id}`);
+      const postData = await response.json()
+  
+      return postData;
+    }
+
     getData().then(postData => {
-      setPostInfo(postData)
+      // setPostInfo(postData)
       const rawEditorData = JSON.parse(postData.content)
       if (rawEditorData !== null) {
         const contentState = convertFromRaw(rawEditorData);
@@ -57,7 +59,7 @@ function EditPost(props) {
       }
     }
     )
-  }, [])
+  }, [id])
 
 
   async function updatePost(ev) {
@@ -72,7 +74,7 @@ function EditPost(props) {
       "mentions": mentions ? mentions.map(ment => ment.value) : [],
       // "coverimage":""
     }
-    const response = await fetch(`http://localhost:5000/posts/${id}`,
+    const response = await fetch(`https://draftjs-blog-server.onrender.com/posts/${id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
