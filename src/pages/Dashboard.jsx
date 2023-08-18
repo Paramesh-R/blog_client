@@ -3,11 +3,13 @@ import { Navigate } from 'react-router-dom';
 import CardPostAdmin from '../component/CardPostAdmin';
 import PaginationComp from '../component/PaginationComp';
 import { UserContext } from '../UserContext';
+import LoadingSpinner from '../component/LoadingSpinner/LoadingSpinner';
 
 function Dashboard() {
   const { userInfo } = useContext(UserContext);
   const username = userInfo?.username;
   const [myPosts, setMyPosts] = useState([]);
+  const [isloading, setIsloading] = useState(true)
 
   // Pagination
   const [page, setPage] = useState(1);
@@ -29,7 +31,7 @@ function Dashboard() {
           .catch(err => console.log(err))
       })
       .catch(err => console.log("Error Fetching all post: " + err))
-
+    setIsloading(false)
   }, [page, username])
 
 
@@ -47,46 +49,55 @@ function Dashboard() {
 
   return (
     <>
-      {username &&
-        <div className="container">                           {     /* <!-- Page Content --> */}
-          {/* <button onClick={refreshContent}>Refresh</button> */} {/* TESTING Purpose */}
-          <header className="py-5 bg-light border-bottom mb-4">     {/* <!-- Page header with logo and tagline--> */}
-            <div className="container">
-              <div className="text-center my-1">
-                <h1 className="fw-bolder">My Dashboard</h1>
-                <p className="lead mb-0"></p>
-              </div>
-            </div>
-          </header>
-          <div className="container">                               {/* 06-03-2023 Index Blog Post */}
-            <div className="row">
-              {/* POSTS old design */}
+      {
+        isloading
+          ? (<LoadingSpinner />)
+          : (
+            <>
+              {username &&
+                <div className="container">                           {     /* <!-- Page Content --> */}
+                  {/* <button onClick={refreshContent}>Refresh</button> */} {/* TESTING Purpose */}
+                  <header className="py-5 bg-light border-bottom mb-4">     {/* <!-- Page header with logo and tagline--> */}
+                    <div className="container">
+                      <div className="text-center my-1">
+                        <h1 className="fw-bolder">My Dashboard</h1>
+                        <p className="lead mb-0"></p>
+                      </div>
+                    </div>
+                  </header>
+                  <div className="container">                               {/* 06-03-2023 Index Blog Post */}
+                    <div className="row">
+                      {/* POSTS old design */}
 
-              <div className="row">
-                {myPosts.length > 0 && myPosts.map((post, index) => (<CardPostAdmin key={index} {...post} setMyPosts />))}
-                {myPosts.length === 0 && <h2 className="text-center">No Result Found</h2>}
-              </div>
-              <div className='pagination-container'>
+                      <div className="row">
+                        {myPosts.length > 0 && myPosts.map((post, index) => (<CardPostAdmin key={index} {...post} setMyPosts />))}
+                        {myPosts.length === 0 && <h2 className="text-center">No Result Found</h2>}
+                      </div>
+                      <div className='pagination-container'>
 
-                {/* <SelectLimit onLimitChange={setPageLimit} /> */}
+                        {/* <SelectLimit onLimitChange={setPageLimit} /> */}
 
-                <PaginationComp
-                  totalPage={totalPages}
-                  page={page}
-                  limit={5}
-                  sibling={1}
-                  onPageChange={handlePageChange}
-                />
+                        <PaginationComp
+                          totalPage={totalPages}
+                          page={page}
+                          limit={5}
+                          sibling={1}
+                          onPageChange={handlePageChange}
+                        />
 
-              </div>
-            </div>
-          </div>
+                      </div>
+                    </div>
+                  </div>
 
-        </div>}
+                </div>}
 
-      <>
-        {!username && <Navigate to="/" />}
-      </>
+              <>
+                {!username && <Navigate to="/" />}
+              </>
+            </>
+          )
+
+      }
     </>
   )
 }
